@@ -72,7 +72,7 @@ The middleware itself is platform-independent. GPU support, model loading, and i
 ## Installation
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/buhuo666/kv-middleware.git
 cd llama-kv-middleware
 python -m venv .venv
 ```

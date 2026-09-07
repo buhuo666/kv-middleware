@@ -77,7 +77,7 @@ KV Prefix Cache Middleware ---- metadata/templates ---- ./data
 ### 1. 获取项目
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/buhuo666/kv-middleware.git
 cd llama-kv-middleware
 ```
 
