@@ -23,6 +23,24 @@ Agent clients often resend a large fixed prompt on every new conversation:
 
 That stable content may contain thousands of tokens. llama.cpp can reuse an in-memory prompt cache while its process remains alive, but a model restart clears the slot state. This project uses llama.cpp slot save/restore endpoints to make the stable prefix recoverable from disk.
 
+## Measured result
+
+In a documented Hermes Agent test, the middleware kept its KV snapshot, `llama.cpp` was restarted, and a new conversation was opened:
+
+> **Average model processing time fell from 91.0 seconds to 13.7 seconds: 77.3 seconds less, or about 85.0% lower.**
+
+| Scenario | Three model-processing times | Average |
+| --- | --- | ---: |
+| Transparent-routing cold start | 1:46, 1:24, 1:23 | **91.0 s** |
+| Model restart with persisted KV restored | 0:12, 0:13, 0:16 | **13.7 s** |
+
+The result demonstrates the middleware's intended behavior: stable agent prefixes such as system instructions and tool lists can be saved to disk and restored after a model restart or when a new conversation is opened. First-time KV creation averaged 1:29.0 and includes the one-time prefix-processing and snapshot-saving cost; the main gain appears during later restoration.
+
+Full procedure, environment, result screenshots, and limitations:
+
+- [KV prefix cache measured results (English)](docs/benchmarks/kv-prefix-cache/README.en.md)
+- [KV 前缀缓存实测效果（中文）](docs/benchmarks/kv-prefix-cache/README.zh-CN.md)
+
 ```text
 OpenAI-compatible Agent
           |
