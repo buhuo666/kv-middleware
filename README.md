@@ -38,7 +38,7 @@
 
 完整测试流程、测试环境、结果截图和限制说明：
 
-- [KV 前缀缓存实测效果（中文）](docs/benchmarks/kv-prefix-cache/README.zh-CN.md)
+- [KV 前缀缓存实测效果（中文）](docs/benchmarks/kv-prefix-cache/README.md)
 - [KV Prefix Cache Measured Results (English)](docs/benchmarks/kv-prefix-cache/README.en.md)
 
 ```text

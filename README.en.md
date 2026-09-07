@@ -39,7 +39,7 @@ The result demonstrates the middleware's intended behavior: stable agent prefixe
 Full procedure, environment, result screenshots, and limitations:
 
 - [KV prefix cache measured results (English)](docs/benchmarks/kv-prefix-cache/README.en.md)
-- [KV 前缀缓存实测效果（中文）](docs/benchmarks/kv-prefix-cache/README.zh-CN.md)
+- [KV 前缀缓存实测效果（中文）](docs/benchmarks/kv-prefix-cache/README.md)
 
 ```text
 OpenAI-compatible Agent

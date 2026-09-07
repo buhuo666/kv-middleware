@@ -1,6 +1,6 @@
 # llama.cpp KV Prefix Cache Middleware: 85% Less Processing Time After Restart
 
-[中文测试页面](README.zh-CN.md)
+[中文测试页面](README.md)
 
 This page presents a complete run of the llama.cpp KV prefix cache middleware with Hermes Agent. The focus is practical: after the model restarts and the agent opens a new conversation, can the middleware restore a saved KV prefix and reduce repeated prefix processing?
 
