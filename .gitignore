@@ -1,0 +1,33 @@
+# Local configuration may contain hostnames, ports, paths, or credentials.
+config.yml
+.env
+.env.*
+
+# Runtime state and KV snapshots.
+data/
+slot-cache/
+*.bin
+*.log
+
+# Python environments and generated files.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editors and operating systems.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local archives and document exports.
+*.rar
+*.zip
+*.7z
+_docx_render_*/

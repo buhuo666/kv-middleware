@@ -1,0 +1,21 @@
+# Copy this file to config.yml, then replace the example values for your system.
+llama_cpp:
+  # llama.cpp HTTP server address.
+  base_url: "http://llama-cpp-host:8080"
+  timeout_seconds: 300
+
+  # Required for persistent KV snapshots. Use the same absolute directory as
+  # llama-server's --slot-save-path. Leave empty to use memory-only caching.
+  slot_save_path: ""
+
+agent:
+  # Address exposed to OpenAI-compatible Agent clients.
+  # Keep this on loopback unless you add authentication and network controls.
+  host: "127.0.0.1"
+  port: 8000
+  api_base: "http://127.0.0.1:8000/v1"
+
+storage:
+  # Metadata and Agent template references. KV binary snapshots are written by
+  # llama.cpp to llama_cpp.slot_save_path.
+  data_dir: "./data"
