@@ -134,7 +134,6 @@ Linux/macOS：
 cp config.example.yml config.yml
 ```
 
-`config.yml` 已被 `.gitignore` 排除。请不要把包含真实主机名、端口、路径或密钥的本地配置提交到仓库。
 
 ## 启动 llama.cpp
 
@@ -365,16 +364,6 @@ data/
 
 实际 KV 二进制快照由 `llama.cpp` 写入 `slot_save_path`。运行期 `messages` 和 `logs` 只保存在内存中，中间件退出后清除。
 
-以下内容不应提交到 GitHub：
-
-- `config.yml`；
-- `data/`；
-- slot 快照目录和所有 `*.bin`；
-- 模型文件；
-- 日志、会话内容和 Agent 模板；
-- 本地压缩包、测试输出和虚拟环境。
-
-项目提供的 `.gitignore` 已覆盖这些常见内容，但发布前仍应检查暂存文件。
 
 ## 适用条件与限制
 
