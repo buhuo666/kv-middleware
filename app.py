@@ -1551,15 +1551,28 @@ async def proxy_to_llama(path: str, request: Request) -> Response:
 
         async def stream_body():
             captured = bytearray()
+            tail = bytearray()
+            total = 0
             try:
                 async for chunk in upstream.aiter_raw():
                     if len(captured) < 262144:
                         captured.extend(chunk[:262144 - len(captured)])
+                    total += len(chunk)
+                    tail.extend(chunk)
+                    if len(tail) > 65536:
+                        del tail[:len(tail) - 65536]
                     yield chunk
             finally:
                 if message_record is not None:
                     message_record["response"] = captured.decode("utf-8", errors="replace")
                     stats = response_text_cache_stats(message_record["response"])
+                    if total > len(captured):
+                        # llama.cpp sends usage in the final SSE chunk. A stream
+                        # longer than the capture window would otherwise drop the
+                        # authoritative cache statistics; parse a rolling tail too.
+                        for key, value in response_text_cache_stats(tail.decode("utf-8", errors="replace")).items():
+                            if value is not None:
+                                stats[key] = value
                     merge_cache_stats(message_record, stats)
                     if stats.get("cached_tokens") is not None:
                         clear_binding_after_cache_miss(prefix_meta, message_record)
